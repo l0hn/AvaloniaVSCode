@@ -61,7 +61,11 @@ public class Workspace
         while (root != current && files.Length == 0)
         {
             var directory = new DirectoryInfo(current!);
-            files = directory.GetFiles("*.sln", SearchOption.TopDirectoryOnly);
+            files = directory.GetFiles("*.slnx", SearchOption.TopDirectoryOnly);
+            if (files.Length == 0)
+            {
+                files = directory.GetFiles("*.sln", SearchOption.TopDirectoryOnly);
+            }
 
             if (files.Length != 0)
                 break;
